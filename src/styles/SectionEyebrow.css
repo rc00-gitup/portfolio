@@ -1,0 +1,33 @@
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: fit-content;
+  margin-bottom: 18px;
+  color: #244638;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+}
+
+.section-eyebrow-icon {
+  display: inline-block;
+  color: #bd704b;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.section-eyebrow-label {
+  color: #244638;
+  white-space: nowrap;
+}
+
+.section-eyebrow-line {
+  display: block;
+  width: 65px;
+  height: 1px;
+  flex-shrink: 0;
+  background: #a9b9a9;
+}

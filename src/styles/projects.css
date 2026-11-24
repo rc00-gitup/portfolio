@@ -1,0 +1,505 @@
+/* PROJECTS SECTION */
+
+.projects-section {
+  width: 100%;
+  padding: 45px 6% 65px;
+  background: var(--color-background);
+  color: #243b32;
+  font-family: "DM Sans", sans-serif;
+}
+
+.projects-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 35px;
+}
+
+.projects-heading {
+  margin: 0;
+  color: #244638;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.projects-heading span {
+  color: #d47a50;
+}
+
+.projects-intro {
+  max-width: 480px;
+  margin: 19px 0 0;
+  color: #737b72;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.projects-header-index {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  color: #a49d8e;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+}
+
+.projects-header-index strong {
+  color: #244638;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+/* PROJECT SHOWCASE */
+
+.projects-content {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  align-items: center;
+  gap: clamp(40px, 6vw, 85px);
+  padding: 35px;
+  background: var(--project-background);
+  transition: background 400ms ease;
+}
+
+/* IMAGE */
+
+.projects-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.38 / 1;
+  overflow: hidden;
+  background: #e5e6df;
+}
+
+.projects-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--project-background);
+  animation: projectsImageIn 500ms ease both;
+}
+
+@keyframes projectsImageIn {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.projects-visual:hover .projects-image {
+  transform: none;
+}
+
+.projects-image-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.projects-image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 17px 20px;
+  background: var(--project-deep);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+/* SCAN EFFECT */
+
+.projects-scan-line {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: -15%;
+  height: 2px;
+  background: var(--project-accent);
+  box-shadow:
+    0 0 9px var(--project-accent),
+    0 0 20px var(--project-accent);
+  pointer-events: none;
+  animation: projectsScan 5s ease-in-out infinite;
+}
+
+@keyframes projectsScan {
+  0% {
+    top: -15%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.85;
+  }
+
+  32% {
+    top: 115%;
+    opacity: 0.7;
+  }
+
+  36% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 115%;
+    opacity: 0;
+  }
+}
+
+/* PROJECT DETAILS */
+
+.projects-details {
+  min-width: 0;
+  padding: 15px 5px;
+}
+
+.projects-number {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 27px;
+  color: #778078;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.projects-number span {
+  color: var(--project-accent);
+  font-size: 15px;
+}
+
+.projects-number i {
+  width: 25px;
+  height: 1px;
+  background: var(--project-accent);
+}
+
+.projects-name {
+  margin: 0 0 23px;
+  color: var(--project-deep);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+}
+
+.projects-name span {
+  color: var(--project-accent);
+}
+
+.projects-description {
+  max-width: 540px;
+  margin: 0 0 34px;
+  color: #5e6b63;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.projects-tech-title {
+  margin-bottom: 15px;
+  color: #9c795e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.projects-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 35px;
+}
+
+.projects-chip {
+  padding: 9px 14px;
+  border: 1px solid rgba(36, 70, 56, 0.17);
+  border-radius: 3px;
+  color: #52645a;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 250ms ease;
+}
+
+.projects-chip:hover {
+  border-color: var(--project-accent);
+  color: var(--project-deep);
+}
+
+/* ACTIONS */
+
+.projects-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+}
+
+.projects-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 47px;
+  padding: 0 21px;
+  border: 1px solid var(--project-deep);
+  background: var(--project-deep);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 250ms ease;
+}
+
+.projects-button:hover {
+  background: transparent;
+  color: var(--project-deep);
+}
+
+.projects-next {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: var(--project-deep);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.projects-next span {
+  color: var(--project-accent);
+  font-size: 20px;
+  transition: transform 250ms ease;
+}
+
+.projects-next:hover span {
+  transform: translateX(5px);
+}
+
+/* PROJECT NAVIGATION */
+
+.projects-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 35px;
+  border-top: 1px solid #dedbd1;
+  border-bottom: 1px solid #dedbd1;
+}
+
+.projects-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 22px 14px;
+  border: none;
+  border-right: 1px solid #dedbd1;
+  background: transparent;
+  color: #85877e;
+  text-align: left;
+  cursor: pointer;
+  transition: color 250ms ease;
+}
+
+.projects-tab:last-child {
+  border-right: none;
+}
+
+.projects-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 14px;
+  width: 0;
+  height: 3px;
+  background: var(--project-deep);
+  transition: width 300ms ease;
+}
+
+.projects-tab.active {
+  color: var(--project-deep);
+}
+
+.projects-tab.active::after {
+  width: calc(100% - 28px);
+}
+
+.projects-tab-number {
+  color: #b07852;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.projects-tab strong {
+  overflow: hidden;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projects-tab-arrow {
+  margin-left: auto;
+  color: var(--project-accent, #b07852);
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.projects-tab.active .projects-tab-arrow {
+  opacity: 1;
+}
+
+/* FOOTER */
+
+.projects-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  color: #99958a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.7px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .projects-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 25px;
+  }
+
+  .projects-visual {
+    aspect-ratio: 1.5 / 1;
+  }
+
+  .projects-details {
+    padding: 10px 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  .projects-section {
+      padding: 40px 5% 50px;
+  }
+
+  .projects-header {
+    margin-bottom: 35px;
+  }
+
+  .projects-heading {
+    font-size: 45px;
+  }
+
+  .projects-header-index {
+    display: none;
+  }
+
+  .projects-intro {
+    font-size: 14px;
+  }
+
+  .projects-content {
+    padding: 15px;
+    gap: 25px;
+  }
+
+  .projects-visual {
+    aspect-ratio: 1.15 / 1;
+  }
+
+  .projects-image-caption {
+    padding: 12px;
+    font-size: 8px;
+  }
+
+  .projects-name {
+    font-size: 38px;
+  }
+
+  .projects-description {
+    font-size: 15px;
+  }
+
+  .projects-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-tab {
+    border-bottom: 1px solid #dedbd1;
+    padding: 17px 8px;
+  }
+
+  .projects-tab:nth-child(2) {
+    border-right: none;
+  }
+
+  .projects-tab strong {
+    font-size: 14px;
+  }
+
+  .projects-tab::after {
+    left: 8px;
+  }
+
+  .projects-tab.active::after {
+    width: calc(100% - 16px);
+  }
+
+  .projects-footer {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-scan-line {
+    display: none;
+  }
+
+  .projects-image {
+    animation: none;
+  }
+
+  .projects-image,
+  .projects-tab,
+  .projects-chip,
+  .projects-button {
+    transition: none;
+  }
+}

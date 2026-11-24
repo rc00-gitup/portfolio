@@ -1,0 +1,810 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap");
+
+.education-section {
+  --ebg: var(--color-background);
+  --eink: #26352f;
+  --muted: #718078;
+  --green: #557d68;
+  --deep: #263b32;
+  --earth: #b17b55;
+  background: var(--ebg);
+  color: var(--eink);
+  padding: 45px clamp(20px, 5vw, 82px) 65px;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+}
+
+.education-inner {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.education-heading {
+  max-width: 720px;
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: 0.8s;
+}
+
+.is-visible .education-heading {
+  opacity: 1;
+  transform: none;
+}
+
+
+.education-kicker span {
+  width: 32px;
+  height: 2px;
+  background: var(--earth);
+}
+
+.education-heading h2 {
+  margin: 0;
+  color: var(--deep);
+  font: 700 clamp(38px, 5vw, 65px)/1.03 "Playfair Display", Georgia, serif;
+  letter-spacing: -0.04em;
+}
+
+.education-heading h2 em {
+  display: block;
+  color: var(--green);
+}
+
+.education-heading p {
+  max-width: 560px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+
+.education-map-column,
+.education-right {
+  opacity: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.education-map-column {
+  transform: translateY(25px);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.education-right {
+  transform: translateX(24px);
+  transition-delay: 0.18s;
+  min-width: 0;
+}
+
+.is-visible .education-map-column,
+.is-visible .education-right {
+  opacity: 1;
+  transform: none;
+}
+
+.education-map-frame {
+  position: relative;
+  min-height: 390px;
+  max-width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.map-caption {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  z-index: 2;
+  color: #8a9588;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.education-map {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  display: block;
+  margin: 15px auto 0;
+  overflow: visible;
+  transform: none;
+}
+
+.africa-country,
+.education-map .africa-country {
+  transition: fill 0.4s ease;
+}
+
+.highlighted-country,
+.education-map .highlighted-country {
+  stroke: #fffaf0 !important;
+  stroke-width: 1.5 !important;
+  filter: drop-shadow(0 1px 2px #263b3222);
+}
+
+.edu-route {
+  fill: none;
+  stroke-dasharray: 9 8;
+  stroke-dashoffset: 260;
+  animation: routeDraw 2.3s ease forwards;
+  filter: drop-shadow(0 2px 2px #b17b5533);
+}
+
+.route-two {
+  animation-delay: 1.1s;
+  stroke: #557d68;
+  filter: drop-shadow(0 2px 2px #557d6833);
+}
+
+.journey-curve {
+  stroke: #1a1eee;
+  opacity: 0;
+  stroke-dashoffset: 430;
+  transition: opacity 0.5s ease;
+}
+
+.journey-curve.draw {
+  opacity: 1;
+  animation: drawJourney 2.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.journey-point {
+  stroke: #fffefa;
+  stroke-width: 3;
+}
+
+.origin-point,
+.middle-point {
+  fill: #b17b55;
+}
+
+.location-pulse {
+  fill: #557d6820;
+  stroke: #557d68;
+  stroke-width: 1.5;
+  animation: locationPulse 2s ease-out infinite;
+}
+
+.current-location .marker-ring,
+.location-ring {
+  fill: #fffdf8;
+  stroke: #557d68;
+  stroke-width: 2.5;
+}
+
+.current-location .marker-dot,
+.location-dot {
+  fill: #557d68;
+}
+
+.location-pin-shape {
+  fill: #557d68;
+  stroke: #fffdf8;
+  stroke-width: 1.5;
+}
+
+.edu-marker {
+  cursor: pointer;
+  outline: none;
+}
+
+.marker-ring {
+  fill: #fffdf8;
+  stroke: var(--earth);
+  stroke-width: 2;
+  transition: 0.25s;
+}
+
+.marker-dot {
+  fill: var(--earth);
+}
+
+.edu-marker.active .marker-ring {
+  stroke: var(--green);
+  stroke-width: 2.5;
+  animation: markerPulse 2s ease-out infinite;
+}
+
+.edu-marker.active .marker-dot {
+  fill: var(--green);
+}
+
+.map-label {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 9px 12px;
+  background: #fffefaed;
+  border: 1px solid #e6e8de;
+  border-radius: 7px;
+  box-shadow: 0 8px 22px #263b3210;
+  pointer-events: none;
+  animation: labelFloat 4s ease-in-out infinite;
+}
+
+.map-label b {
+  font-size: 13px;
+  color: var(--deep);
+}
+
+.map-label small {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+.label-guinea {
+  left: 20%;
+  bottom: 29%;
+  border-left: 3px solid #b17b55;
+}
+
+.label-meknes {
+  left: 55%;
+  top: 19%;
+  border-left: 3px solid #b17b55;
+  animation-delay: -0.8s;
+}
+
+.label-morocco {
+  left: 61%;
+  top: 8%;
+  border-left: 3px solid #557d68;
+  animation-delay: -1.4s;
+}
+
+.map-orbit {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid #b17b551c;
+  border-radius: 50%;
+  width: 58%;
+  aspect-ratio: 1;
+  left: 24%;
+  top: 18%;
+  pointer-events: none;
+}
+
+.orbit-b {
+  width: 72%;
+  left: 17%;
+  top: 10%;
+  animation: orbit 7s ease-in-out infinite;
+}
+
+.education-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 28px);
+  margin-top: 10px;
+}
+
+.education-stats div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.education-stats b {
+  font: 700 31px "Playfair Display", Georgia, serif;
+  color: var(--deep);
+}
+
+.education-stats span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.education-stats > i {
+  height: 27px;
+  width: 1px;
+  background: #d9dfd7;
+}
+
+.education-cards {
+  display: grid;
+  gap: 13px;
+}
+
+.education-card {
+  position: relative;
+  width: 100%;
+  min-height: 174px;
+  display: grid;
+  grid-template-columns: 44px 122px minmax(0, 1fr);
+  gap: 17px;
+  align-items: center;
+  padding: 20px 22px;
+  border: 1px solid #e5e9e1;
+  border-radius: 13px;
+  background: #fffefa;
+  color: var(--eink);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 9px 26px #263b3208;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.education-card:hover,
+.education-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: #9aaf9d;
+  box-shadow: 0 14px 30px #263b3212;
+  outline: none;
+}
+
+.education-card.selected {
+  border-color: #8ba58f;
+  box-shadow: 0 11px 30px #557d681b;
+}
+
+.card-number {
+  align-self: start;
+  padding-top: 4px;
+  color: var(--green);
+  font: 600 36px "Playfair Display", Georgia, serif;
+}
+
+.card-logo {
+  width: 122px;
+  height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border-right: 1px solid #e5e8df;
+}
+
+.card-logo img {
+  max-width: 100%;
+  max-height: 112px;
+  object-fit: contain;
+}
+
+.card-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.card-top > b {
+  font-size: 16px;
+  color: var(--earth);
+}
+
+.card-top small {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: #eaf0e9;
+  border-radius: 20px;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
+.card-location {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.card-info > strong {
+  font: 700 21px/1.25 "Playfair Display", Georgia, serif;
+  color: var(--deep);
+}
+
+.card-subname {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.card-degree,
+.card-field {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-top: 5px;
+}
+
+.card-degree:before {
+  content: "◇";
+  color: var(--earth);
+  margin-right: 7px;
+}
+
+.card-field:before {
+  content: "↳";
+  color: var(--green);
+  margin-right: 7px;
+}
+
+.card-arrow {
+  position: absolute;
+  right: 13px;
+  bottom: 10px;
+  color: #9ba99c;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.education-card:hover .card-arrow,
+.education-card.selected .card-arrow {
+  opacity: 1;
+}
+
+.education-active-note {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 15px;
+  padding: 13px 17px;
+  background: #edf1e9;
+  border-left: 2px solid var(--earth);
+  animation: noteIn 0.3s ease;
+}
+
+.education-active-note small {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--earth);
+}
+
+.education-active-note b {
+  font: 600 19px "Playfair Display", Georgia, serif;
+  color: var(--deep);
+}
+
+.education-active-note span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.education-ending {
+  max-width: 650px;
+  margin: 35px auto 0;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #edf1e8;
+  border-radius: 8px;
+}
+
+.ending-arrow {
+  font-size: 31px;
+  color: var(--earth);
+}
+
+.education-ending strong {
+  font: italic 600 24px "Playfair Display", Georgia, serif;
+  color: var(--deep);
+}
+
+.education-ending p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.ending-dots {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.ending-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c5cbb9;
+  animation: dotBounce 1.4s ease-in-out infinite;
+}
+
+.ending-dots i:nth-child(2) {
+  animation-delay: 0.18s;
+  background: var(--green);
+}
+
+.ending-dots i:nth-child(3) {
+  animation-delay: 0.36s;
+  background: #d3b38b;
+}
+
+/* KEYFRAMES */
+
+@keyframes routeDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawJourney {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes locationPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    stroke-opacity: 0.9;
+  }
+
+  100% {
+    stroke-opacity: 0;
+    r: 23;
+  }
+}
+
+@keyframes labelFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes orbit {
+  0%,
+  100% {
+    transform: scale(0.98);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes dotBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes noteIn {
+  from {
+    opacity: 0.3;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 1050px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .education-map-frame {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .education-right {
+    max-width: 760px;
+    width: 100%;
+    margin: auto;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 620px) {
+  .education-section {
+    padding: 40px 17px 50px;
+  }
+
+  .education-heading h2 {
+    font-size: clamp(36px, 10vw, 52px);
+  }
+
+  .education-heading p {
+    font-size: 15px;
+  }
+
+  .education-map-frame {
+    min-height: 280px;
+  }
+
+  .education-map {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .label-guinea {
+    left: 4%;
+    bottom: 16%;
+  }
+
+  .label-meknes {
+    left: 44%;
+    top: 20%;
+  }
+
+  .label-morocco {
+    left: 57%;
+    top: 4%;
+  }
+
+  .map-caption {
+    font-size: 7px;
+  }
+
+  .map-label {
+    padding: 6px 8px;
+  }
+
+  .map-label b {
+    font-size: 10px;
+  }
+
+  .map-label small {
+    font-size: 8px;
+  }
+
+  .education-stats {
+    gap: 10px;
+    margin-top: 0;
+  }
+
+  .education-stats div {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .education-stats b {
+    font-size: 25px;
+  }
+
+  .education-stats span {
+    font-size: 10px;
+  }
+
+  .education-card {
+    grid-template-columns: 27px 82px minmax(0, 1fr);
+    gap: 8px;
+    min-height: 148px;
+    padding: 13px 9px;
+  }
+
+  .card-number {
+    font-size: 25px;
+  }
+
+  .card-logo {
+    width: 82px;
+    height: 90px;
+    padding: 4px;
+  }
+
+  .card-logo img {
+    max-height: 80px;
+  }
+
+  .card-top > b {
+    font-size: 12px;
+  }
+
+  .card-top small {
+    font-size: 7px;
+    padding: 4px 5px;
+  }
+
+  .card-location {
+    font-size: 11px;
+  }
+
+  .card-info > strong {
+    font-size: 16px;
+  }
+
+  .card-subname {
+    font-size: 9px;
+  }
+
+  .card-degree,
+  .card-field {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .education-ending {
+    margin-top: 35px;
+    padding: 15px 12px;
+    gap: 10px;
+  }
+
+  .education-ending strong {
+    font-size: 18px;
+  }
+
+  .education-ending p {
+    font-size: 10px;
+  }
+
+  .ending-dots {
+    display: none;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .education-section *,
+  .education-section *::before,
+  .education-section *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .education-section .education-heading,
+  .education-section .education-map-column,
+  .education-section .education-right {
+    opacity: 1;
+    transform: none;
+  }
+
+  .journey-curve.draw {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  .location-pulse {
+    animation: none;
+  }
+}

@@ -1,16 +1,78 @@
-# React + Vite
+# Portfolio — Roger Camara
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Portfolio personnel développé avec React et Vite. Il présente mon parcours, mes compétences, mes projets et mes expériences autour des systèmes intelligents, de l'IoT et des systèmes embarqués.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- Vite 8
+- CSS
+- EmailJS pour le formulaire de contact
+- react-simple-maps et world-atlas pour la visualisation cartographique
 
-## React Compiler
+## Prérequis
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js `^20.19.0` ou `>=22.12.0`
+- npm
 
-## Expanding the Oxlint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm ci
+```
+
+## Configuration du formulaire de contact
+
+Copier `.env.example` vers `.env`, puis renseigner les identifiants du projet EmailJS :
+
+```env
+VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+```
+
+Les variables préfixées par `VITE_` sont intégrées au code envoyé au navigateur. Ne jamais y placer de mot de passe, de clé privée ou de secret serveur.
+
+## Développement
+
+```bash
+npm run dev
+```
+
+## Vérification et build de production
+
+```bash
+npm run lint
+npm run build
+```
+
+Pour prévisualiser le build localement :
+
+```bash
+npm run preview
+```
+
+## Déploiement
+
+Déployer le contenu du dossier `dist/` généré par `npm run build`. Configurer les trois variables EmailJS dans les variables d'environnement de la plateforme d'hébergement avant le build.
+
+
+## Architecture actuelle
+
+Le portfolio est une application React monopage. La navigation entre les rubriques utilise les ancres HTML (`#home`, `#about`, etc.) ; aucun routeur n'est nécessaire.
+
+## Installation
+
+```bash
+npm ci
+npm run dev
+```
+
+Pour vérifier le code et préparer une version de production :
+
+```bash
+npm run lint
+npm run build
+```
+
+Le formulaire de contact utilise EmailJS. Copiez `.env.example` vers `.env`, puis renseignez les trois variables `VITE_EMAILJS_*` depuis votre compte EmailJS. Ces variables préfixées par `VITE_` sont intégrées au code client lors du build : elles ne doivent pas contenir de secret serveur.
