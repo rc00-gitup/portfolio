@@ -60,7 +60,7 @@ const fr = {
       description: "Grâce à une bourse de l'État guinéen, je poursuis mes études au Maroc. Je choisis l'informatique, convaincu par son potentiel et par la révolution technologique en cours."
     },
     {
-      period: "2021–2024 · Meknès",
+      period: "2022–2025 · Meknès",
       title: "Comprendre pour créer",
       description: "À la Faculté des Sciences Moulay Ismaïl, je suis une formation en Sciences Mathématiques et Informatique et obtiens ma Licence. Je découvre progressivement mon intérêt pour les technologies intelligentes."
     },

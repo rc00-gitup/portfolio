@@ -60,7 +60,7 @@ home: {
       description: "Thanks to a scholarship from the Guinean government, I continued my studies in Morocco. I chose computer science, convinced by its potential and the ongoing technological revolution."
     },
     {
-      period: "2021–2024 · Meknes",
+      period: "2022–2025 · Meknes",
       title: "Understanding to Create",
       description: "At Moulay Ismail Faculty of Sciences, I studied Mathematical and Computer Sciences and earned my Bachelor's degree. Gradually, I discovered my interest in intelligent technologies."
     },
